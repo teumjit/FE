@@ -1,4 +1,4 @@
-import { Header } from "@/features/home/Header";
+import { Header } from "@/components/ui/Header";
 import { TimeSelectionCard } from "@/features/home/TimeSelectionCard";
 import { QuickBannerCard } from "@/features/home/QuickBannerCard";
 import { RecentStretchingCard } from "@/features/home/RecentStretchingCard";
