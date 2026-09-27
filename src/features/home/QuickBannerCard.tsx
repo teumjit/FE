@@ -1,9 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import { Card } from "@/components/ui/Card";
 
-export function QuickBannerCard() {
+interface QuickBannerCardProps {
+  onClick?: () => void;
+}
+
+export function QuickBannerCard({ onClick }: QuickBannerCardProps) {
   return (
-    <Card bgColor="bg-teum-lime" className="relative flex flex-col gap-[4px]">
+    <Card
+      bgColor="bg-teum-lime"
+      className="relative flex cursor-pointer flex-col gap-[4px] transition-transform hover:opacity-95 active:scale-[0.99]"
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+    >
       <h3 className="text-[20px] font-bold leading-[29px] tracking-[-0.4px] text-teum-ink">
         지금 30초만
       </h3>

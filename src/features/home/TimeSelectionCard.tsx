@@ -11,6 +11,10 @@ export function TimeSelectionCard() {
   const timeOptions = ["1분", "3분", "5분", "10분"];
   const currentTags = ["집", "서 있음", "목", "어깨", "허리"];
 
+  const handleTagClick = (tag: string) => {
+    console.log(`선택된 태그: ${tag}`);
+  };
+
   return (
     <Card bgColor="bg-teum-purple" className="flex flex-col gap-[12px]">
       <h2 className="text-[22px] font-bold leading-normal tracking-[-0.44px] text-teum-ink">
@@ -42,7 +46,7 @@ export function TimeSelectionCard() {
           <span className="text-[14px] font-bold leading-[17px] tracking-[-0.28px] text-teum-text-sub">
             현재 상황
           </span>
-          <button className="flex items-center gap-[4px] cursor-pointer">
+          <button className="flex cursor-pointer items-center gap-[4px]">
             <span className="text-[14px] font-medium leading-[17px] tracking-[-0.28px] text-teum-ink">
               수정
             </span>
@@ -57,7 +61,11 @@ export function TimeSelectionCard() {
 
         <div className="flex items-center gap-[4px]">
           {currentTags.map((tag) => (
-            <Tag key={tag} label={tag} />
+            <Tag
+              key={tag}
+              label={tag}
+              onClick={() => handleTagClick(tag)}
+            />
           ))}
         </div>
       </div>
