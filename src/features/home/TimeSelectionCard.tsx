@@ -5,9 +5,15 @@ import Image from "next/image";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
+import {
+  DifficultyDropdown,
+  Difficulty,
+} from "@/features/home/components/DifficultyDropdown";
 
 export function TimeSelectionCard() {
   const [selectedTime, setSelectedTime] = useState<string>("3분");
+  const [difficulty, setDifficulty] = useState<Difficulty>("중간");
+
   const timeOptions = ["1분", "3분", "5분", "10분"];
   const currentTags = ["집", "서 있음", "목", "어깨", "허리"];
 
@@ -17,9 +23,15 @@ export function TimeSelectionCard() {
 
   return (
     <Card bgColor="bg-teum-purple" className="flex flex-col gap-[12px]">
-      <h2 className="text-[22px] font-bold leading-normal tracking-[-0.44px] text-teum-ink">
-        지금 몇 분 있어요?
-      </h2>
+      <div className="flex w-full items-center justify-between">
+        <h2 className="text-[22px] font-bold leading-normal tracking-[-0.44px] text-teum-ink">
+          지금 몇 분 있어요?
+        </h2>
+        <DifficultyDropdown
+          value={difficulty}
+          onChange={(val) => setDifficulty(val)}
+        />
+      </div>
 
       {/* 시간 선택 버튼 목록 */}
       <div className="flex gap-[6px]">
@@ -61,11 +73,7 @@ export function TimeSelectionCard() {
 
         <div className="flex items-center gap-[4px]">
           {currentTags.map((tag) => (
-            <Tag
-              key={tag}
-              label={tag}
-              onClick={() => handleTagClick(tag)}
-            />
+            <Tag key={tag} label={tag} onClick={() => handleTagClick(tag)} />
           ))}
         </div>
       </div>
