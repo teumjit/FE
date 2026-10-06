@@ -12,13 +12,13 @@ export function Toggle({ checked, onChange }: ToggleProps) {
       role="switch"
       aria-checked={checked}
       onClick={() => onChange(!checked)}
-      className={`relative inline-flex h-[24px] w-[46px] shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200 ease-in-out ${
-        checked ? "bg-[#A394F5]" : "bg-[#ECEEF0]"
-      }`}
+      className="relative inline-flex h-[24px] w-[46px] shrink-0 cursor-pointer items-center rounded-[12px] bg-[#ECEEF0] transition-colors duration-200 ease-in-out"
     >
       <span
-        className={`inline-block h-[22px] w-[22px] transform rounded-full bg-white shadow-xs transition duration-200 ease-in-out ${
-          checked ? "translate-x-[23px]" : "translate-x-[1px]"
+        className={`inline-block h-[22px] w-[22px] transform rounded-[22px] transition duration-200 ease-in-out ${
+          checked
+            ? "translate-x-[23px] bg-[#A394F5]"
+            : "translate-x-[1px] bg-[#CED4DB]"
         }`}
       />
     </button>
