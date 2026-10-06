@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --font-pretendard: "Pretendard Variable", Pretendard, sans-serif;
+
+  /* Brand Teum Colors */
+  --color-teum-purple: #a394f5;
+  --color-teum-lime: #ddf688;
+  --color-teum-ink: #20211f;
+  --color-teum-white: #ffffff;
+  --color-teum-line: #e5e5e5;
+
+  /* Accent & Backgrounds */
+  --color-teum-tag-bg: #ece8fc;
+  --color-teum-text-sub: #5b5870;
+  --color-teum-bg: #f7f7f7;
+
+  /* Gray Palette */
+  --color-gray-500: #838a95;
+}
