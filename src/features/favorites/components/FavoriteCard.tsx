@@ -14,17 +14,23 @@ export default function FavoriteCard({
   onClick,
   onToggleFavorite,
 }: FavoriteCardProps) {
-  const { id, durationText, title, createdAtText, tags, isFavorite } = routine;
+  const { id, durationText, title, createdAtText, tags } = routine;
 
   return (
-    <button
-      type="button"
+    <div
+      role="button"
+      tabIndex={0}
       onClick={() => onClick?.(id)}
-      className="relative flex items-start w-full p-[12px] gap-[18px] bg-white rounded-[12px] text-left cursor-pointer hover:shadow-sm transition-shadow"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          onClick?.(id);
+        }
+      }}
+      className="relative flex items-start w-full p-[12px] gap-[18px] bg-white rounded-[12px] text-left cursor-pointer hover:shadow-sm transition-shadow select-none"
     >
       <div className="flex justify-center items-center w-[87px] self-stretch p-[7px_9px_11px_10px] gap-[10px] bg-teum-tint rounded-[12px] shrink-0">
         <Image
-          src="/images/stretch-ex.svg"
+          src="/icons/stretch-ex.svg"
           alt={title}
           width={69}
           height={69}
@@ -65,16 +71,16 @@ export default function FavoriteCard({
           e.stopPropagation();
           onToggleFavorite?.(id);
         }}
-        className="absolute top-[12px] right-[12px] p-1 cursor-pointer hover:opacity-80 transition-opacity"
+        className="absolute top-[12px] right-[12px] p-1 cursor-pointer hover:opacity-80 transition-opacity z-10"
         aria-label="즐겨찾기 해제"
       >
         <Image
-          src="/images/heart.svg"
+          src="/icons/heart.svg"
           alt="favorite icon"
           width={24}
           height={24}
         />
       </button>
-    </button>
+    </div>
   );
 }
