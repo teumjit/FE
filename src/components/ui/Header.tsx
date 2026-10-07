@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 interface HeaderProps {
   title?: string;
   onBack?: () => void;
+  onExit?: () => void;
 }
 
-export function Header({ title, onBack }: HeaderProps) {
+export function Header({ title, onBack, onExit }: HeaderProps) {
   const router = useRouter();
 
   const handleBack = () => {
@@ -20,18 +21,30 @@ export function Header({ title, onBack }: HeaderProps) {
   };
 
   return (
-    <header className="flex w-full items-center gap-[12px] pt-[24px]">
-      <button
-        type="button"
-        onClick={handleBack}
-        className="flex cursor-pointer items-center justify-center p-0"
-      >
-        <Image src="/icons/back.svg" alt="뒤로가기" width={24} height={24} />
-      </button>
-      {title && (
-        <span className="text-[16px] font-medium leading-[20px] tracking-[-0.32px] text-teum-ink">
-          {title}
-        </span>
+    <header className="flex w-full items-center justify-between pt-[24px]">
+      <div className="flex items-center gap-[12px]">
+        <button
+          type="button"
+          onClick={handleBack}
+          className="flex cursor-pointer items-center justify-center p-0"
+        >
+          <Image src="/icons/back.svg" alt="뒤로가기" width={24} height={24} />
+        </button>
+        {title && (
+          <span className="font-pretendard text-[16px] font-medium leading-[20px] tracking-[-0.32px] text-teum-ink">
+            {title}
+          </span>
+        )}
+      </div>
+
+      {onExit && (
+        <button
+          type="button"
+          onClick={onExit}
+          className="cursor-pointer font-pretendard text-[15px] font-medium leading-[20px] tracking-[-0.3px] text-teum-ink"
+        >
+          종료
+        </button>
       )}
     </header>
   );
