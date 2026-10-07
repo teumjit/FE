@@ -12,9 +12,10 @@ const CALENDAR_DAYS = [
   { day: 6, level: 0 },
   { day: 7, level: 0 },
   { day: 8, level: 0 },
-  { day: 9, level: 3 },
-  { day: 10, level: 1 },
-  { day: 11, level: 2 },
+  { day: 9, level: 3 }, // 10분 이상 (#8A79E8)
+  { day: 10, level: 1 }, // 1~5분 (#EBE7FF)
+  { day: 11, level: 2 }, // 5~10분 (#BEB3FF)
+  { day: 12, level: 0 },
   { day: 13, level: 0 },
   { day: 14, level: 0 },
   { day: 15, level: 0 },
@@ -43,7 +44,7 @@ export default function CalendarSection() {
       case 2:
         return "bg-[#BEB3FF] text-teum-ink font-medium";
       case 3:
-        return "bg-[#8A79E8] text-white font-medium";
+        return "bg-[#8A79E8] text-teum-ink font-medium"; // 텍스트 색상을 검정(text-teum-ink)으로 변경
       default:
         return "text-teum-ink font-medium";
     }
@@ -51,6 +52,7 @@ export default function CalendarSection() {
 
   return (
     <section className="flex flex-col gap-[12px] p-[16px] w-[342px] bg-white rounded-[24px]">
+      {/* 요일 표시 */}
       <div className="grid grid-cols-7 w-full text-center">
         {DAYS_OF_WEEK.map((day, idx) => (
           <span
@@ -64,6 +66,7 @@ export default function CalendarSection() {
         ))}
       </div>
 
+      {/* 날짜 그리드 */}
       <div className="grid grid-cols-7 gap-y-[4px] justify-items-center w-full">
         {CALENDAR_DAYS.map((item, idx) => (
           <div
@@ -83,6 +86,7 @@ export default function CalendarSection() {
         ))}
       </div>
 
+      {/* 범례 (Legend) */}
       <div className="flex justify-between items-center w-full pt-[4px]">
         <span className="text-[12px] leading-[17px] tracking-[-0.24px] text-teum-ink font-normal font-pretendard">
           하루 스트레칭 시간
