@@ -60,7 +60,9 @@ export function TimeSelectionCard() {
 
     getMyInfo()
       .then((me) => syncPreferredBodyAreas(me.id, data.bodyParts))
-      .catch(() => {});
+      .catch((error) => {
+        console.error("[상황 선택] 신체 부위 선호 동기화 실패:", error);
+      });
   };
 
   const handleCustomTimeConfirm = (minutes: number) => {
@@ -93,10 +95,14 @@ export function TimeSelectionCard() {
                 latitude,
                 longitude,
                 measuredAt: new Date().toISOString(),
-              }).catch(() => {});
+              }).catch((error) => {
+                console.error("[상황 선택] 위치 데이터 기록 실패:", error);
+              });
             }),
           )
-          .catch(() => {});
+          .catch((error) => {
+            console.error("[상황 선택] 환경 정보 조회 실패:", error);
+          });
       },
       () => {},
       { timeout: 5000 },
