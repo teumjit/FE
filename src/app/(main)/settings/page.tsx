@@ -28,6 +28,9 @@ export default function SettingsPage() {
   const [isWatchConnected, setIsWatchConnected] = useState(false);
 
   useEffect(() => {
+    // localStorage(외부 브라우저 저장소)를 읽은 결과를 동기화하는 거라 렌더 중엔
+    // 읽을 수 없음(SSR 중엔 없음) - effect에서의 setState가 맞음.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRecommendNotification(getRecommendNotification());
     setPermissionManagement(getPermissionManagement());
     setIsWatchConnected(getWatchConnected());
