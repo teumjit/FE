@@ -10,6 +10,7 @@ import { getUserProfile } from "@/features/settings/api/userProfile";
 import { clearAuthToken } from "@/services/authToken";
 import { ApiError } from "@/services/apiClient";
 import { getWatchConnected } from "@/features/home/connectionPreferences";
+import { requestNotificationPermission } from "@/services/notifications";
 import {
   getPermissionManagement,
   getRecommendNotification,
@@ -27,6 +28,9 @@ export default function SettingsPage() {
   const [isWatchConnected, setIsWatchConnected] = useState(false);
 
   useEffect(() => {
+    // localStorage(외부 브라우저 저장소)를 읽은 결과를 동기화하는 거라 렌더 중엔
+    // 읽을 수 없음(SSR 중엔 없음) - effect에서의 setState가 맞음.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRecommendNotification(getRecommendNotification());
     setPermissionManagement(getPermissionManagement());
     setIsWatchConnected(getWatchConnected());
@@ -51,6 +55,11 @@ export default function SettingsPage() {
   const handleToggleRecommendNotification = (value: boolean) => {
     setRecommendNotification(value);
     persistRecommendNotification(value);
+    // 토글 클릭은 실제 사용자 제스처라 웹에서도 권한 요청이 허용됨(마운트 시
+    // 자동 요청과 달리). 켤 때만 요청하고, 끌 때는 권한을 건드리지 않음.
+    if (value) {
+      requestNotificationPermission();
+    }
   };
 
   const handleTogglePermissionManagement = (value: boolean) => {
