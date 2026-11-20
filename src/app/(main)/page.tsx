@@ -59,8 +59,9 @@ export default function HomePage() {
               completedCount: summary.completedCount,
             }),
           )
-          .catch(() => {
+          .catch((error) => {
             // 오늘 기록이 없거나 조회 실패 시 기본값(0분/0회)으로 표시함
+            console.error("[홈] 오늘의 스트레칭 요약 조회 실패:", error);
           });
 
         getStretchingHistories(me.id)
@@ -76,11 +77,14 @@ export default function HomePage() {
               ),
             });
           })
-          .catch(() => {
+          .catch((error) => {
             // 기록이 없거나 조회 실패 시 카드의 기본 문구를 유지함
+            console.error("[홈] 최근 스트레칭 기록 조회 실패:", error);
           });
       })
-      .catch(() => {});
+      .catch((error) => {
+        console.error("[홈] 내 정보 조회 실패:", error);
+      });
   }, []);
 
   return (

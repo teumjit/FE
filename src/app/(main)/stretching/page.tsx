@@ -85,7 +85,9 @@ export default function StretchingPage() {
           durationSeconds: elapsedSeconds,
         }),
       )
-      .catch(() => {});
+      .catch((error) => {
+        console.error("[스트레칭] 진행 기록 저장 실패:", error);
+      });
   };
 
   // 재생 중일 때만 1초마다 감소시키고, 0이 되면 다음 단계(또는 완료)로 넘어감
